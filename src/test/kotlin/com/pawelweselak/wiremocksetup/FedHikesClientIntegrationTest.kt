@@ -9,7 +9,8 @@ import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.web.reactive.function.client.WebClient
 
 /**
- * End-to-end app test with JUnit5
+ * Integration test example with JUnit5,
+ * without setting up Spring context
  */
 @ExtendWith(WireMockExtension::class)
 internal class FedHikesClientIntegrationTest {

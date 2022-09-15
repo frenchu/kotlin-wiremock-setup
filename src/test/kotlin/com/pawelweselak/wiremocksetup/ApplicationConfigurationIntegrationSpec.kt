@@ -8,6 +8,9 @@ import io.kotest.matchers.shouldBe
 import org.springframework.context.annotation.Import
 import org.springframework.test.context.ContextConfiguration
 
+/**
+ * Integration test with Kotest and Spring context slice
+ */
 @Import(ApplicationConfiguration::class)
 @ContextConfiguration(
     initializers = [CustomInitializer::class]
