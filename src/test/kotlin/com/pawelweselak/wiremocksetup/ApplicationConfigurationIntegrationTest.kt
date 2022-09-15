@@ -8,6 +8,9 @@ import org.springframework.context.annotation.Import
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.junit.jupiter.SpringExtension
 
+/**
+ * Integration test with JUnit5 and Spring context slice
+ */
 @ExtendWith(SpringExtension::class)
 @Import(ApplicationConfiguration::class)
 @ContextConfiguration(

@@ -11,7 +11,7 @@ import org.springframework.test.web.reactive.server.WebTestClient
 import org.springframework.test.web.reactive.server.expectBody
 
 /**
- * End-to-end app test with JUnit5
+ * App end-to-end test with JUnit5
  */
 @SpringBootTest
 @ContextConfiguration(

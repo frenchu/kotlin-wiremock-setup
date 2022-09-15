@@ -10,7 +10,8 @@ import org.springframework.web.reactive.function.client.WebClient
 import java.math.BigDecimal
 
 /**
- * End-to-end app test with JUnit5
+ * Integration test example with Kotest,
+ * without setting up Spring context
  */
 class FedHikesClientIntegrationSpec : ExpectSpec({
 
