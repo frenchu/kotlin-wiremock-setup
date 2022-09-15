@@ -2,34 +2,40 @@ package com.pawelweselak.wiremocksetup
 
 import com.github.tomakehurst.wiremock.client.WireMock.aResponse
 import com.github.tomakehurst.wiremock.client.WireMock.get
-import com.github.tomakehurst.wiremock.stubbing.StubMapping
-import io.kotest.core.spec.style.ExpectSpec
-import io.kotest.extensions.wiremock.WireMockListener
-import io.kotest.matchers.shouldBe
+import com.github.tomakehurst.wiremock.client.WireMock.stubFor
+import kotlinx.coroutines.runBlocking
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.web.reactive.function.client.WebClient
-import java.math.BigDecimal
 
-class FedHikesClientIntegrationTest :  ExpectSpec({
+/**
+ * End-to-end app test with JUnit5
+ */
+@ExtendWith(WireMockExtension::class)
+internal class FedHikesClientIntegrationTest {
 
-    val client = FedHikesClient(WebClient.create(serverBaseUrl))
+    private val client = FedHikesClient(WebClient.create(serverBaseUrl))
 
-    context("interests rates are not disastrously high") {
-        val rates = 14.toBigDecimal()
+    @Test
+    fun `should return the correct rates`() {
+        // given
+        val rates = 14
         stubFedResponse(rates)
-        expect("client gets the correct rates") {
-            client.getRates() shouldBe FedRates(rates)
-        }
+        // when
+        val response = runBlocking { client.getRates() }
+        // then
+        assert(response == FedRates(14.toBigDecimal()))
     }
 
-    listener(WireMockListener.perTest(server))
-})
+    private fun stubFedResponse(rates: Int) {
+        stubFor(
+            get("/rates")
+                .willReturn(
+                    aResponse()
+                        .withHeader("Content-Type", "application/json")
+                        .withBody("{ \"value\": \"$rates\" }")
+                )
+        )
+    }
+}
 
-fun stubFedResponse(rates: BigDecimal): StubMapping =
-    server.stubFor(
-        get("/rates")
-            .willReturn(
-                aResponse()
-                    .withHeader("Content-Type", "application/json")
-                    .withBody("{ \"value\": \"$rates\" }")
-            )
-    )
