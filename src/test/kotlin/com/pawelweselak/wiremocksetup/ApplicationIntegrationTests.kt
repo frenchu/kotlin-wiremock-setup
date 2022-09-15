@@ -6,13 +6,20 @@ import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.web.reactive.server.WebTestClient
 import org.springframework.test.web.reactive.server.expectBody
 
+/**
+ * End-to-end app test with JUnit5
+ */
 @SpringBootTest
+@ContextConfiguration(
+	initializers = [CustomInitializer::class]
+)
 @AutoConfigureWebTestClient
 @ExtendWith(WireMockExtension::class)
-class ApplicationTests(@Autowired private val webClient: WebTestClient) : WiremockTestBase {
+class ApplicationIntegrationTests(@Autowired private val webClient: WebTestClient) {
 
 	@Test
 	fun contextLoads() {

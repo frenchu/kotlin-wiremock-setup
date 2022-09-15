@@ -21,12 +21,14 @@ dependencies {
 	implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("io.projectreactor:reactor-test")
 	testImplementation("io.kotest:kotest-runner-junit5:5.4.2")
 	testImplementation("io.kotest:kotest-assertions-core:5.4.2")
 	testImplementation("io.kotest.extensions:kotest-extensions-wiremock:1.0.3")
+	testImplementation("io.kotest.extensions:kotest-extensions-spring:1.1.2")
 	testImplementation("com.github.tomakehurst:wiremock-jre8:2.33.2")
 }
 
