@@ -2,12 +2,12 @@ package com.pawelweselak.wiremocksetup
 
 import org.springframework.web.reactive.function.server.*
 
-internal fun fedHikesHandler(client: FedHikesClient): suspend (ServerRequest) -> ServerResponse = {
+internal fun mortgageHandler(client: FedHikesClient): suspend (ServerRequest) -> ServerResponse = {
     ServerResponse.ok().json().bodyValueAndAwait(
-        client.getRates().toArmageddonStatus()
+        client.getRates().toMortgageStatus()
     )
 }
 
-private fun FedRates.toArmageddonStatus() = ArmageddonStatus(value > 15.toBigDecimal())
+private fun FedRates.toMortgageStatus() = MortgageStatus(value > 15.toBigDecimal())
 
-data class ArmageddonStatus(val areWeDoomedYet: Boolean)
+data class MortgageStatus(val areWeBankrupt: Boolean)
