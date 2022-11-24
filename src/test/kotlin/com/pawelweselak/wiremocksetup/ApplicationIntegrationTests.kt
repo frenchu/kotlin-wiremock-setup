@@ -33,10 +33,10 @@ class ApplicationIntegrationTests(@Autowired private val webClient: WebTestClien
 				.withHeader("Content-Type", "application/json")
 				.withBody("{ \"value\": $rates }")))
 		webClient
-			.get().uri("/armageddon/status")
+			.get().uri("/mortgage/status")
 			.exchange()
 			.expectStatus().isOk
-			.expectBody<ArmageddonStatus>().isEqualTo(notDoomedYet)
+			.expectBody<MortgageStatus>().isEqualTo(stillSafe)
 	}
 
 	@Test
@@ -47,13 +47,13 @@ class ApplicationIntegrationTests(@Autowired private val webClient: WebTestClien
 				.withHeader("Content-Type", "application/json")
 				.withBody("{ \"value\": $rates }")))
 		webClient
-			.get().uri("/armageddon/status")
+			.get().uri("/mortgage/status")
 			.exchange()
 			.expectStatus().isOk
-			.expectBody<ArmageddonStatus>().isEqualTo(alreadyDoomed)
+			.expectBody<MortgageStatus>().isEqualTo(bankrupt)
 	}
 }
 
-val alreadyDoomed = ArmageddonStatus(true)
-val notDoomedYet = ArmageddonStatus(false)
+val bankrupt = MortgageStatus(true)
+val stillSafe = MortgageStatus(false)
 

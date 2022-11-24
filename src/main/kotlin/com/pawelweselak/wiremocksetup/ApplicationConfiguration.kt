@@ -20,7 +20,7 @@ class ApplicationConfiguration {
 
     @Bean
     internal fun home(fedHikesClient: FedHikesClient) = coRouter {
-        GET("/armageddon/status", fedHikesHandler(fedHikesClient))
+        GET("/mortgage/status", mortgageHandler(fedHikesClient))
     }
 }
 
