@@ -25,7 +25,7 @@ internal class FedHikesClientIntegrationTest {
         // when
         val response = runBlocking { client.getRates() }
         // then
-        assert(response == FedRates(14.toBigDecimal()))
+        assert(response == FedRates(rates.toBigDecimal()))
     }
 
     private fun stubFedResponse(rates: Int) {

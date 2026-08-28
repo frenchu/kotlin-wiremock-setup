@@ -26,7 +26,7 @@ class ApplicationIntegrationTests(@Autowired private val webClient: WebTestClien
 	}
 
 	@Test
-	fun `should tell if armageddon is yet come`() {
+	fun `should tell if armageddon is yet to come`() {
 		val rates = 14
 		stubFor(get("/rates")
 			.willReturn(aResponse()

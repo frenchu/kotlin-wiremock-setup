@@ -6,16 +6,13 @@ import com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig
 import org.springframework.boot.test.util.TestPropertyValues
 import org.springframework.context.ApplicationContextInitializer
 import org.springframework.context.ConfigurableApplicationContext
-import org.springframework.context.support.GenericApplicationContext
 import org.springframework.test.context.DynamicPropertyRegistry
 import org.springframework.test.context.DynamicPropertySource
 import com.github.tomakehurst.wiremock.junit5.WireMockExtension as TomakehurstWireMockExtension
 import java.net.ServerSocket
 
 interface WiremockTestBase {
-
     companion object {
-
         @DynamicPropertySource
         @JvmStatic
         fun registerProperties(registry: DynamicPropertyRegistry) {
